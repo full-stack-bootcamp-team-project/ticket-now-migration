@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//KO"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ticketnow.user.model.mapper.UserMapper">
+    <!-- 회원가입 -->
+    <insert id="userSignup">
+        INSERT INTO user(userId, userPw, userSSN, userName, userNickname, userPhone, userEmail, userAddress, userGender)
+        VALUES (#{userId}, #{userPw}, #{userSSN}, #{userName}, #{userNickname}, #{userPhone}, #{userEmail},
+                #{userAddress}, #{userGender})
+    </insert>
+
+    <!-- 로그인 - 사용자 정보 조회 -->
+    <select id="userLogin" resultType="User">
+        SELECT *
+        FROM user
+        WHERE userEmail = #{userEmail}
+    </select>
+
+    <!-- 아이디 찾기 -->
+    <select id="userFindId" >
+        SELECT userEmail
+        FROM user
+        WHERE userName = #{userName}
+          AND userSSN = #{userSSN}
+    </select>
+
+    <!-- 비밀번호 찾기 - 사용자 존재 확인 -->
+    <select id="userFindPassword" resultType="String">
+        SELECT userId
+        FROM user
+        WHERE userEmail = #{userEmail}
+          AND userPhone = #{userPhone}
+    </select>
+
+    <!-- 비밀번호 변경 -->
+    <update id="userUpdatePassword">
+        UPDATE user
+        SET userPw = #{newPassword}
+        WHERE userId = #{userId}
+    </update>
+
+    <!-- 유저 정보 조회 -> 마이페이지 -->
+    <select id="userGetInfo" resultType="User">
+        SELECT *
+        FROM user
+        WHERE userId = #{userId}
+    </select>
+
+    <!-- 마이페이지 / 비밀번호 조회 -->
+    <select id="getUserPassword" resultType="String">
+        SELECT userPw FROM user WHERE userId = #{userId}
+    </select>
+
+    <!-- 마이페이지 / 비밀번호 변경 -->
+    <update id="updatePassword">
+        UPDATE user
+        SET userPw = #{newPassword}
+        WHERE userId = #{userId}
+    </update>
+
+
+    <!-- 마이페이지 -> 유저 정보 업데이트 -->
+    <update id="userUpdateInfo">
+        UPDATE user
+        <set>
+            <if test="user.userName != null">userName = #{user.userName},</if>
+            <if test="user.userNickname != null">userNickname = #{user.userNickname},</if>
+            <if test="user.userPhone != null">userPhone = #{user.userPhone},</if>
+            <if test="user.userEmail != null">userEmail = #{user.userEmail},</if>
+            <if test="user.userAddress != null">userAddress = #{user.userAddress},</if>
+            <if test="user.userGender != null">userGender = #{user.userGender},</if>
+        </set>
+        WHERE userId = #{userId}
+    </update>
+
+
+    <!-- 이메일 중복 확인 -->
+    <select id="checkEmail" resultType="boolean">
+        SELECT count(*)
+        FROM user
+        WHERE userEmail = #{userEmail}
+    </select>
+
+    <!-- 전화번호 중복 확인 -->
+    <select id="checkPhone" resultType="boolean">
+        SELECT count(*)
+        FROM user
+        WHERE userPhone = #{userPhone}
+    </select>
+
+    <!-- 주민등록번호 중복 확인 -->
+    <select id="checkSSN" resultType="boolean">
+        SELECT count(*)
+        FROM user
+        WHERE userSSN = #{userSSN}
+    </select>
+</mapper>

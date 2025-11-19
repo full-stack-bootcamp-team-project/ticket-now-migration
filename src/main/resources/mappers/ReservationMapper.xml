@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//KO"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ticketnow.reservation.model.mapper.ReservationMapper">
+
+    <!-- 예매 생성 -->
+    <insert id="insertReservation">
+        INSERT INTO reservation (performanceScheduleId, userId, seatId, seatNumber)
+        VALUES(#{performanceScheduleId}, #{userId}, #{seatId}, #{seatNumber})
+    </insert>
+
+    <!-- 특정 사용자 예매 조회 -->
+    <select id="getReservation" resultType="UserReservationViewDto">
+        SELECT *
+        FROM UserReservationViewDto
+        WHERE userId = #{userId}
+    </select>
+
+    <!-- 예매 삭제 -->
+    <delete id="deleteReservation">
+        DELETE FROM reservation
+        WHERE performanceScheduleId = #{performanceScheduleId}
+        AND seatId = #{seatId}
+        AND seatNumber = #{seatNumber}
+    </delete>
+</mapper>

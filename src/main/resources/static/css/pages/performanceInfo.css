@@ -1,0 +1,228 @@
+/***************************************
+Performance container
+***************************************/
+.performance-container {
+    width: 1200px;
+}
+
+/***************************************
+performance header
+***************************************/
+.performance-header {
+    border-bottom: 1px solid var(--1-GRAY-900);
+    padding-bottom: 10px;
+}
+
+.performance-header-title {
+    font-size: 24px;
+    font-weight: bold;
+    padding: 30px 20px 15px 20px;
+}
+
+.performance-header-ranking {
+    font-size: 15px;
+    line-height: 18px;
+    padding-left: 10px;
+}
+
+/***************************************
+performance info
+***************************************/
+.performance-info {
+    padding: 30px 20px 20px;
+    display: flex;
+}
+
+.performance-image {
+    border: 1px solid var(--1-GRAY-900);
+    min-width : 450px;
+    max-width : 450px;
+    min-height : 600px;
+    max-height : 600px;
+    margin-right: 100px;
+}
+
+.load-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.performance-info-detail {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.performance-info-detail-main {
+    border-bottom: 1px solid var(--1-GRAY-900);
+    padding-bottom: 10px;
+}
+
+.performance-info-detail-title {
+    display: flex;
+}
+
+.performance-info-detail-content {
+    padding : 0 50px 20px 0;
+    font-size: 15px;
+    line-height: 18px;
+    min-width : 120px;
+    box-sizing: border-box;
+    margin-left: 20px;
+}
+
+.ticket-info {
+    border-bottom: 1px solid var(--1-GRAY-900);
+    font-size: 15px;
+    line-height: 18px;
+    padding-bottom: 20px;
+}
+
+.ticket-info-title {
+    padding: 15px 0 15px 20px;
+}
+
+.ticket-info-content {
+    padding-left: 20px;
+}
+
+.performance-info-caster {
+    display: flex;
+    padding : 15px 10px
+}
+
+.performance-info-caster-data {
+    font-size: 15px;
+    line-height: 18px;
+    margin-right: 50px;
+    margin-left: 10px;
+}
+
+.reservation-btn {
+    padding: 15px 20px;
+    width: 200px;
+    background-color: var(--1-MAIN);
+    font-size: 20px;
+    line-height: 27px;
+    font-weight: bold;
+    color : var(--1-GRAY-0);
+    border-radius: 12px;
+}
+
+/***************************************
+performance detail info
+***************************************/
+.performance-check-btn-box {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.performance-check-btn {
+    padding: 10px 200px;
+    font-size: 20px;
+    line-height: 24px;
+    border-radius: 20px;
+}
+
+.performance-check-info {
+    display: none;
+    padding-left: 20px;
+    padding-top: 30px;
+    padding-bottom: 50px;
+}
+
+.performance-check-info-top {
+    padding: 20px 0 10px 20px;
+    border-bottom: 2px solid var(--1-GRAY-900);
+}
+
+.performance-check-info-top-content {
+    font-size: 22px;
+    line-height: 26px;
+}
+
+.performance-check-info-detail {
+    text-align: center;
+    padding: 20px;
+
+}
+
+.performance-check-info-note-main,
+.performance-check-info-note-import {
+    padding-bottom: 20px;
+}
+
+.performance-check-info-note-main-content {
+    padding: 5px;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.performance-check-info-note-import-content {
+    padding: 5px;
+    font-size: 16px;
+    line-height: 20px;
+    color: var(--1-ERROR);
+}
+
+.performance-check-info-title,
+.performance-check-info-casting-title,
+.performance-check-info-map-title {
+    font-size: 30px;
+    line-height: 36px;
+    padding: 40px 20px 20px;
+}
+
+.performance-check-info-title-content {
+    font-size: 26px;
+    line-height: 32px;
+    font-weight: 600;
+    color: var(--1-MAIN);
+    padding: 0 20px 40px;
+}
+
+.performance-check-info-casting {
+    display: flex;
+    flex-direction: column;
+}
+
+.performance-check-info-casting-member {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin: 0 auto;
+}
+
+.performance-check-info-casting-member img{
+    max-width: 150px;
+    max-height: 150px;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.load-casting-member {
+    margin-top: 10px;
+    margin-bottom: 40px;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.performance-check-info-map {
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.performance-check-info-map-detail {
+    padding-bottom: 10px;
+}
+
+#map {
+    width: 600px;
+    height: 400px;
+    padding-top: 20px;
+    margin: 0 auto;
+}
+

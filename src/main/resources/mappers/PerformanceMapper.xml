@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//KO"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ticketnow.performance.model.mapper.PerformanceMapper">
+
+    <!-- 공연 전체 조회 -->
+    <select id="getAllPerformance" resultType="Performance">
+        SELECT performanceImagePath, performanceTitle, performanceId, performanceRanking, performanceCategory
+        FROM performance
+    </select>
+
+    <!-- 공연  카테고리 별 조회 -->
+    <select id="getPerformanceByCategory" resultType="Performance">
+        SELECT performanceImagePath, performanceTitle, performanceId, performanceRanking
+        FROM performance
+        WHERE performanceCategory = #{performanceCategory}
+    </select>
+
+    <!-- 통합 검색 -->
+    <select id="searchTotalPerformance" resultType="Performance">
+        SELECT DISTINCT p.performanceTitle, p.performanceImagePath, p.performanceId, p.performanceRanking
+        FROM performance p
+                 LEFT JOIN performancecastmember pc ON p.performanceId = pc.performanceId
+                 LEFT JOIN castmember c ON pc.castMemberId = c.castMemberId
+        WHERE p.performanceCategory LIKE CONCAT('%', #{keyword}, '%')
+           OR p.performanceTitle LIKE CONCAT('%', #{keyword}, '%')
+           OR c.castMemberName LIKE CONCAT('%', #{keyword}, '%')
+        ORDER BY p.performanceRanking ASC
+    </select>
+
+    <!-- 키워드 검색 -->
+    <select id="searchKeywordPerformance" resultType="Performance">
+        SELECT performanceImagePath, performanceTitle, performanceId, performanceRanking
+        FROM performance
+        WHERE performanceCategory LIKE CONCAT('%', #{keyword}, '%')
+        ORDER BY performanceRanking ASC
+    </select>
+
+    <!-- 제목 검색 -->
+    <select id="searchTitlePerformance" resultType="Performance">
+        SELECT performanceImagePath, performanceTitle, performanceId, performanceRanking
+        FROM performance
+        WHERE performanceTitle LIKE CONCAT('%', #{keyword}, '%')
+        ORDER BY performanceRanking ASC
+    </select>
+
+    <!-- 출연자 검색 -->
+    <select id="searchCastPerformance" resultType="Performance">
+        SELECT DISTINCT p.performanceTitle, p.performanceImagePath, p.performanceId, p.performanceRanking
+        FROM performance p
+                 INNER JOIN performancecastmember pc ON p.performanceId = pc.performanceId
+                 INNER JOIN castmember c ON pc.castMemberId = c.castMemberId
+        WHERE c.castMemberName LIKE CONCAT('%', #{keyword}, '%')
+        ORDER BY p.performanceRanking ASC
+    </select>
+
+    <!-- 공연 기본 정보 -->
+    <select id="getPerformanceBasicInfo" resultType="PerformanceDetailResponseDto">
+        SELECT
+            performanceId,
+            performanceTitle,
+            performanceImagePath,
+            performanceCategory,
+            performancePrice,
+            performanceAddress,
+            performanceInfo,
+            performanceRanking
+        FROM performance
+        WHERE performanceId = #{performanceId}
+    </select>
+
+    <!-- 공연 정보 -->
+    <select id="getPerformanceSchedules" resultType="PerformanceSchedule">
+        SELECT
+            performanceScheduleId,
+            performanceId,
+            performanceScheduleStartDate,
+            performanceScheduleStartTime
+        FROM performanceschedule
+        WHERE performanceId = #{performanceId}
+    </select>
+
+    <!-- 출연자 정보 -->
+    <select id="getCastMembers" resultType="CastMember">
+        SELECT
+            cm.castMemberId,
+            cm.castMemberName,
+            cm.castMemberImagePath
+        FROM castmember cm
+                 INNER JOIN performancecastmember pcm
+                            ON cm.castMemberId = pcm.castMemberId
+        WHERE pcm.performanceId = #{performanceId}
+    </select>
+
+    <!-- 좌석 조회 -->
+    <select id="getSeatByPerformanceScheduleId" resultType="PerformanceScheduleSeatViewDto">
+        SELECT
+            performanceScheduleId,
+            seatId,
+            seatNumber,
+            isReserved
+        FROM PerformanceScheduleSeatViewDto
+        WHERE performanceScheduleId = #{performanceScheduleId}
+    </select>
+
+    <!-- 자동완성 검색 - 제목만 검색, 최대 10개 -->
+    <select id="autocompletePerformance" resultType="Performance">
+        SELECT DISTINCT
+            performanceId,
+            performanceTitle,
+            performanceImagePath,
+            performanceCategory,
+            performanceRanking
+        FROM performance
+        WHERE performanceTitle LIKE CONCAT('%', #{keyword}, '%')
+        ORDER BY
+            CASE
+                WHEN performanceTitle LIKE CONCAT(#{keyword}, '%') THEN 1
+                ELSE 2
+                END,
+            performanceRanking ASC
+            LIMIT 10
+    </select>
+</mapper>

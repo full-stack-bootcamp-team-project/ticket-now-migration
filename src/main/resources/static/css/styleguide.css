@@ -1,0 +1,18 @@
+:root {
+    --1-MAIN: #FD9620;
+    --1-MAIN-HOVER: #EE7802;
+    --1-ERROR: #f13929;
+    --1-SUCCESS: #34C759;
+    --1-GRAY-0: #FFFFFF;
+    --1-GRAY-50: #FAFAFA;
+    --1-GRAY-100: #F5F5F5;
+    --1-GRAY-200: #EEEEEE;
+    --1-GRAY-300: #E0E0E0;
+    --1-GRAY-400: #BDBDBD;
+    --1-GRAY-500: #9E9E9E;
+    --1-GRAY-600: #757575;
+    --1-GRAY-700: #616161;
+    --1-GRAY-800: #424242;
+    --1-GRAY-900: #212121;
+    --1-BACKDROP:  rgba(33, 33, 33, 0.7);
+}

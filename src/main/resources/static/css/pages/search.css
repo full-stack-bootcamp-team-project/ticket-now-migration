@@ -1,0 +1,53 @@
+.category-section {
+    padding: 50px 0;
+}
+
+.performance-list .performance-item .performance-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 130px;
+    max-height: 130px;
+    gap: 10px;
+}
+
+.performance-list .performance-item .performance-info .performance-title strong  {
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 600;
+    color: var(--1-MAIN);
+    text-align: center;
+    vertical-align: middle;
+    display: inline-block;
+    margin-bottom: 6px;
+}
+
+.performance-list .performance-item .performance-info .ranking {
+    display: inline-block;
+    width: fit-content;
+    background: #ff6b6b;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.no-results,
+.error-message,
+.loading {
+    width: 100%;
+    text-align: center;
+    padding: 100px 20px;
+    font-size: 16px;
+    color: #666;
+    grid-column: 1 / -1;
+}
+
+.error-message {
+    color: #ff6b6b;
+}
+
+.loading {
+    color: #333;
+}
